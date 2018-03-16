@@ -1,0 +1,36 @@
+## Helloworld Deployment on Kubernetes
+## The manifest below shows how to deploy a sample
+## application called "helloworld" on Kubernetes.
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: helloworld
+  labels:
+    app: helloworld
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    # This is the PodSpec that declares what containers we want, and how.
+    spec:
+      containers:
+      - name: helloworld
+        image: nginx:latest
+        # Always pull down the image, each time we update this PodSpec.
+        imagePullPolicy: Always
+        env:
+        - name: MY_ENV_VARIABLE
+          value: "Hello world!"
+        ports:
+        - containerPort: 80
+          protocol: TCP
+          name: http
+        - containerPort: 443
+          protocol: TCP
+          name: https

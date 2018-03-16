@@ -1,0 +1,70 @@
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: pranxt-helloworld
+  namespace: dev
+  labels:
+    app: pranxt-helloworld
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pranxt-helloworld
+  template:
+    metadata:
+      labels:
+        app: pranxt-helloworld
+    spec:
+      serviceAccountName: quay-pull
+      containers:
+      - name: pranxt-helloworld
+        image: quay.io/pra_group/pranxt-helloworld:latest
+        imagePullPolicy: Always
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Dev"
+        - name: GENERATOR_ID
+          value: "1"
+        # Below shows how to set your container's environment variables
+        # using Kubernetes secret you've staged in your pipeline.
+        - name: SQS_ACCESS_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: pranxt-helloworld
+              key: accesskey
+        - name: SQS_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: pranxt-helloworld
+              key: secretkey
+        - name: SQS_ROLE_ARN
+          valueFrom:
+            secretKeyRef:
+              name: pranxt-helloworld
+              key: role
+        ports:
+        - containerPort: 80
+          protocol: TCP
+          name: http
+        - containerPort: 2222
+          protocol: TCP
+          name: metrics
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pranxt-helloworld
+  namespace: dev
+  labels:
+    app: pranxt-helloworld
+spec:
+  ports:
+    - port: 80
+      name: http
+      protocol: TCP
+    - port: 2222
+      name: metrics
+      protocol: TCP
+  selector:
+    app: pranxt-helloworld
