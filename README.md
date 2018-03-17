@@ -26,3 +26,23 @@ our application is always up! Let's try to use a deployment
 so our pods will get rescheduled if they die. 
 
 Run `deployment.sh` to begin the example.
+
+## The Service
+We can't access our application with just a deployment,
+there's nothing set up for us to access it. Let's see
+what it takes to expose our service to the world.
+
+Run `service.sh` to begin the example.
+
+## Scaling
+One pod, when it dies, means our application has downtime.
+What can we do to ensure we've got high availability?
+We can specify the replicas we want.
+
+Run `scaling.sh` to begin the example.
+
+## Namespace
+Use namespaces to isolate cluster resources. Here, we'll spin up
+a namespace and a deployment in that namespace.
+
+Run `namespace.sh` to begin the example.

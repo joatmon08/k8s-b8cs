@@ -57,14 +57,20 @@ read
 
 print_explanation "Let's try it again with the token."
 curl -L -k -X GET https://${node_ip}:8443/api/v1/namespaces/default/services/helloworld:http/proxy -H "Authorization: Bearer ${token}"
+echo "curl -L -k -X GET https://${node_ip}:8443/api/v1/namespaces/default/services/helloworld:http/proxy -H 'Authorization: Bearer ${token}'"
+curl -L -k -X GET https://${node_ip}:8443/api/v1/namespaces/default/services/helloworld:http/proxy -H "Authorization: Bearer ${token}"
+echo ""
+echo ""
 
 print_explanation "What happens when I delete the Deployment behind the Service?"
 print_command kubectl delete -f deployment.yaml
 
 print_explanation "I'm going to try to reach my app now."
+echo "curl -L -k -X GET https://${node_ip}:8443/api/v1/namespaces/default/services/helloworld:http/proxy -H 'Authorization: Bearer ${token}'"
 curl -L -k -X GET https://${node_ip}:8443/api/v1/namespaces/default/services/helloworld:http/proxy -H "Authorization: Bearer ${token}"
-
 echo ""
+echo ""
+
 print_explanation "It's not up! That's because now that I've deleted my deployment, my pods are gone."
 print_command kubectl get deployments
 print_command kubectl get pods

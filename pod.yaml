@@ -1,6 +1,3 @@
-## Helloworld Pod on Kubernetes
-## The manifest below shows how to deploy a sample
-## application called "helloworld" on Kubernetes.
 ---
 apiVersion: v1
 kind: Pod
