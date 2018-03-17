@@ -46,3 +46,10 @@ Use namespaces to isolate cluster resources. Here, we'll spin up
 a namespace and a deployment in that namespace.
 
 Run `namespace.sh` to begin the example.
+
+## Secrets
+Secrets can be inserted as part of the pod. Here's how
+you would create a secret, and use it as part of the 
+application.
+
+Run `secrets.sh` to begin the example.
