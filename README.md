@@ -13,7 +13,7 @@ server and demonstrates each type of Kubernetes construct and
 its relevance.
 
 ## Pre-Requisites
-* You have a Kubernetes cluster. Feel free to set it up locally.
+* You have a [Minikube](https://github.com/kubernetes/minikube) Kubernetes cluster.
 
 ## The Pod
 Let's deploy an application in a simple pod. 
