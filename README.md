@@ -15,6 +15,9 @@ its relevance.
 ## Pre-Requisites
 * You have a [Minikube](https://github.com/kubernetes/minikube) Kubernetes cluster.
 
+** Be sure to hit "Enter" when you want to go to the next step in the
+script! **
+
 ## The Pod
 Let's deploy an application in a simple pod. 
 
