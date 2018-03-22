@@ -38,5 +38,7 @@ print_command kubectl get pods
 
 print_explanation "Let's see if we can reach helloworld!"
 print_command curl -v $(minikube ip):80
+echo ""
+echo ""
 
 kubectl delete -f deployment.yaml > /dev/null

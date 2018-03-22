@@ -21,10 +21,14 @@ print_command kubectl apply -f service.yaml
 print_explanation "Is the service up?"
 token=$(kubectl describe secret $(kubectl get secrets | grep default | cut -f1 -d ' ') | grep -E '^token' | cut -f2 -d':' | tr -d '\t' | sed 's/ //g')
 curl -L -k -X GET https://${node_ip}:8443/api/v1/namespaces/default/services/helloworld:http/proxy -H "Authorization: Bearer ${token}"
+echo ""
+echo ""
 
 print_explanation "Recall that when we deleted the Pods, we couldn't reach helloworld anymore."
 print_command kubectl delete -f deployment.yaml
 curl -L -k -X GET https://${node_ip}:8443/api/v1/namespaces/default/services/helloworld:http/proxy -H "Authorization: Bearer ${token}"
+echo ""
+echo ""
 
 print_explanation "We only had one pod and that means our application has downtime!"
 print_explanation "Let's deploy with 3 replicas and see what happens."
